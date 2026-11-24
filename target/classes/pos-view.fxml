@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.possystem.controller.PosController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12">
+            <padding><Insets top="16" right="18" bottom="10" left="18"/></padding>
+            <Label text="Point of Sale" styleClass="page-title"/>
+            <Region/>
+            <Label fx:id="dailyStatsLabel" styleClass="stats-pill"/>
+        </HBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.58">
+            <padding><Insets top="6" right="18" bottom="16" left="18"/></padding>
+
+            <!-- Left: Product Catalog -->
+            <VBox spacing="10">
+                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                <TextField fx:id="searchField" promptText="Search SKU, name, or category..."/>
+                <TableView fx:id="catalogTable">
+                    <columns>
+                        <TableColumn fx:id="catSkuCol" text="SKU" prefWidth="85"/>
+                        <TableColumn fx:id="catNameCol" text="Product" prefWidth="195"/>
+                        <TableColumn fx:id="catPriceCol" text="Price" prefWidth="80"/>
+                        <TableColumn fx:id="catStockCol" text="Stock" prefWidth="70"/>
+                    </columns>
+                </TableView>
+                <Button text="Add Selected to Cart (or Double-Click)" onAction="#handleAddToCart" maxWidth="Infinity" styleClass="primary-btn"/>
+            </VBox>
+
+            <!-- Right: Active Cart & Checkout -->
+            <VBox spacing="10">
+                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                <Label text="Current Order" styleClass="section-title"/>
+                <TableView fx:id="cartTable">
+                    <columns>
+                        <TableColumn fx:id="cartItemCol" text="Item" prefWidth="170"/>
+                        <TableColumn fx:id="cartQtyCol" text="Qty" prefWidth="55"/>
+                        <TableColumn fx:id="cartTotalCol" text="Total" prefWidth="80"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="8">
+                    <Button text="-1 Qty" onAction="#handleDecreaseQty" maxWidth="Infinity"/>
+                    <Button text="Remove" onAction="#handleRemoveCartItem" maxWidth="Infinity" styleClass="danger-btn"/>
+                </HBox>
+
+                <VBox spacing="6" styleClass="summary-box">
+                    <padding><Insets top="10" right="12" bottom="10" left="12"/></padding>
+                    <HBox>
+                        <Label text="Subtotal:"/>
+                        <Region/>
+                        <Label fx:id="subtotalLabel" text="0.00"/>
+                    </HBox>
+                    <HBox>
+                        <Label text="Tax (10%):"/>
+                        <Region/>
+                        <Label fx:id="taxLabel" text="0.00"/>
+                    </HBox>
+                    <Separator/>
+                    <HBox>
+                        <Label text="Total Due:" styleClass="total-label"/>
+                        <Region/>
+                        <Label fx:id="totalLabel" text="0.00" styleClass="total-label"/>
+                    </HBox>
+                </VBox>
+
+                <Button text="Complete Checkout" onAction="#handleCheckout" maxWidth="Infinity" styleClass="success-btn"/>
+            </VBox>
+        </SplitPane>
+    </center>
+</BorderPane>

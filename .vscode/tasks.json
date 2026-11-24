@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "run-pos-system",
+			"type": "shell",
+			"command": "mvn",
+			"args": [
+				"-q",
+				"javafx:run"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "run-pos-system-fixed",
+			"type": "shell",
+			"command": "mvn",
+			"args": [
+				"-q",
+				"javafx:run"
+			],
+			"isBackground": true,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}
